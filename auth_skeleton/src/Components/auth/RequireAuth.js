@@ -9,7 +9,6 @@ export default function RequireAuth({ children }) {
     const location = useLocation();
     const user = useLocalStorage.GetUser();
     if (user === false) {
-        alert("Authentified user has wrong values, login again")
         localStorage.clear();
         return <Navigate to = "/login"state = {{ from: location }} replace />;
     }

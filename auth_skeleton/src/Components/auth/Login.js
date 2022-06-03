@@ -6,7 +6,7 @@ async function authenticate(email, password) {
     password: password,
   };
 
-  return fetch(process.env.REACT_APP_DBHOST + "/Users/authenticate" , {
+  return fetch(process.env.REACT_APP_DBHOST_USERS + "/authenticate" , {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +24,9 @@ export default function Login() {
     e.preventDefault();
     console.log("Authentification starting")
     await authenticate(email, password).then((value) => {
-      if (!value.isSuccess) {
+      if(value === null || value=== undefined)
+        alert("Return value can't be read")
+      else if (!value.isSuccess) {
         alert(value.errorMessage);
       }
       else if (value.result === undefined) {
@@ -37,7 +39,9 @@ export default function Login() {
         );
         window.location.href = "/"
       }
-    });
+    }).catch(function() {
+      alert("Failed to fetch api");
+  });;
   };
 
   const handleCreateAccount = async (e) => {

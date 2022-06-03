@@ -5,7 +5,7 @@ async function register(email, password, username) {
     email: email,
     password: password,
   };
-  return fetch(process.env.REACT_APP_DBHOST + "/Users/register", {
+  return fetch(process.env.REACT_APP_DBHOST_USERS + "/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
