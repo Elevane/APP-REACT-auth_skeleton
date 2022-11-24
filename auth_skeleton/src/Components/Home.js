@@ -6,7 +6,7 @@ export default function Home(){
 
     return(
         <div>
-        <h1>welcome <strong style={{color:"red"}}>{ user.username }</strong></h1>
+        <h1>welcome <strong style={{color:"red"}}>{ user.username || user.email }</strong></h1>
         <a href="/logout">logout</a>
         </div>
         );
