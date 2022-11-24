@@ -21,7 +21,8 @@ async function authenticate(email, password, googleId) {
 
 const hrandleCallback = async (response)  => {
   var userGoogle = jwt_decode(response.credential)
-  await authenticate(userGoogle.email, null , userGoogle.client_id).then((value) => {
+  console.log(userGoogle)
+  await authenticate(userGoogle.email, null , userGoogle.jti).then((value) => {
     if(value === null || value=== undefined)
       alert("Return value can't be read")
     else if (!value.isSuccess) {
@@ -70,7 +71,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Authentification starting")
-    await authenticate(email, password).then((value) => {
+    await authenticate(email, password, null).then((value) => {
       if(value === null || value=== undefined)
         alert("Return value can't be read")
       else if (!value.isSuccess) {
